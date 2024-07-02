@@ -77,7 +77,7 @@ class App extends Component {
         return (
             <div className="app">
                 <AppInfo employees={employees} increased={increased}/>
-    
+
                 <div className="search-panel">
                     <SeachPanel></SeachPanel>
                     <AppFilter></AppFilter>

@@ -13,13 +13,24 @@ class EmployeesAddForm extends Component {
 
     onValueChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.currentTarget.name]: e.currentTarget.value
         })
     }
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.onAdd(this.state.name, this.state.salary);
+        const {name, salary} = this.state;
+        
+        if (name.length < 3) {
+            alert("The name must be at least 3 characters long.");
+            return;
+        }
+        if (salary.length === 0) {
+            alert("Salary must be stated.");
+            return;
+        }
+        
+        this.props.onAdd(name, salary);
         this.setState({
             name: '',
             salary: ''

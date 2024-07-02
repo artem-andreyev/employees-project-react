@@ -2,7 +2,7 @@ import EmployeesListItem from "../employees-list-item/employees-list-item";
 
 import "./employees-list.css";
 
-const EmployeesList = ({data, onDelete, onToggleIncrease, onToggleProp}) => {
+const EmployeesList = ({data, onDelete, onToggleProp}) => {
 
     const elements = data.map(item => {
         const {id, ...itemProps} = item;
@@ -11,7 +11,7 @@ const EmployeesList = ({data, onDelete, onToggleIncrease, onToggleProp}) => {
                 key={id} 
                 {...itemProps} // {...item} (spread operator(expands the object into separate elements)) is identical to name={item.name} salary={item.salary})
                 onDelete={() => onDelete(id)}
-                onToggleProp={() => onToggleProp(id)}/>
+                onToggleProp={(e) => onToggleProp(id, e.currentTarget.getAttribute("data-toggle"))}/>
         )
     })
 
