@@ -12,6 +12,7 @@ class SeachPanel extends Component {
     onUpdateSearch = (e) => {
         const term = e.target.value;
         this.setState({term});
+        this.props.onUpdateSearch(term)
     }
 
     render() {
@@ -19,7 +20,8 @@ class SeachPanel extends Component {
             <input type="text"
                    className="form-control search-input"
                    placeholder="Find an employee"
-                   value={this.state.term}/>
+                   value={this.state.term}
+                   onChange={this.onUpdateSearch}/>
         )
     }
 }
