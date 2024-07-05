@@ -1,6 +1,6 @@
 import "./app-filter.css";
 
-const AppFilter = () => {
+const AppFilter = (props) => {
     const buttonsData = [
         {name: "all", label: "All employees"},
         {name: "rise", label: "Employees up for promotion"},
@@ -8,11 +8,14 @@ const AppFilter = () => {
     ];
 
     const buttons = buttonsData.map(({name, label}) => {
+        const active = props.filter === name; // instead of if (with true or false)
+        const clazz = active ? "btn-light" : "btn-outline-light";
         return (
             <button
-                className="btn btn-light"
+                type="button"
+                className={`btn ${clazz}`}
                 key={name}
-                type="button">
+                onClick={() => props.onFilterSelect(name)}>
                     {label}
             </button>
         )
@@ -21,21 +24,6 @@ const AppFilter = () => {
     return (
         <div className="btn-group">
             {buttons}
-            {/* <button
-                className="btn btn-light"
-                type="button">
-                    All employees
-            </button>
-            <button
-                className="btn btn-outline-light"
-                type="button">
-                    Employees up for promotion
-            </button>
-            <button
-                className="btn btn-outline-light"
-                type="button">
-                    Salary is over $1,000
-            </button> */}
         </div>
     );
 }

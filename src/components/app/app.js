@@ -18,7 +18,7 @@ class App extends Component {
                 {name: "Carl W.", salary: 5000, increase: false, rise:false,  id: 3},
             ],
             term: "",
-            filter: "rise"
+            filter: ""
         }
         this.maxId = 4;
     }
@@ -96,6 +96,10 @@ class App extends Component {
         }
      }
 
+     onFilterSelect = (filter) => {
+        this.setState({filter});
+     }
+
     render() {
         const {data, term, filter} = this.state;
         const employees = this.state.data.length;
@@ -108,14 +112,14 @@ class App extends Component {
 
                 <div className="search-panel">
                     <SeachPanel onUpdateSearch={this.onUpdateSearch}/>
-                    <AppFilter></AppFilter>
+                    <AppFilter filter={filter} onFilterSelect={this.onFilterSelect}></AppFilter>
                 </div>
     
                 <EmployeesList 
                     data={visibleData}
                     onDelete={this.deleteItem}
                     onToggleProp={this.onToggleProp}/>
-                <EmployeesAddForm onAdd={this.addItem}/>
+                <EmployeesAddForm onAdd={this.addItem} onSubmit={this.onSubmit}/>
             </div>
         );
     }
